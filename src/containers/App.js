@@ -3,6 +3,7 @@ import Header from '../common/Header';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "../components/HomePage";
 import MediaGalleryPage from "./MediaGalleryPage";
+import CounterContainer from "./CounterContainer";
 
 class App extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path="/" component={HomePage}/>
                         <Route path="/library" component={MediaGalleryPage}/>
+                        <Route path="/counter" component={CounterContainer}/>
                     </Switch>
                 </div>
             </BrowserRouter>
