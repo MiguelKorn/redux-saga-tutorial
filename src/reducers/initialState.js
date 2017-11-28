@@ -1,4 +1,5 @@
 export default {
     images: [],
-    video: []
+    video: [],
+    counter: 0
 }
