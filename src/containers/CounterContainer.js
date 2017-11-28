@@ -18,7 +18,6 @@ class CounterContainer extends React.Component {
 
     render() {
         const {counter} = this.props;
-        console.log(counter);
         return (
             <Counter value={counter} onIncrement={() => this.handleOnIncrement()}
                      onDecrement={() => this.handleOnDecrement()}
