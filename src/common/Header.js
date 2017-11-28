@@ -7,6 +7,8 @@ const Header = () => (
             <NavLink to="/" activeClassName="active">Home</NavLink>
             {" | "}
             <NavLink to="library" activeClassName="active">Library</NavLink>
+            {" | "}
+            <NavLink to="counter" activeClassName="active">Counter</NavLink>
         </nav>
     </div>
 );
