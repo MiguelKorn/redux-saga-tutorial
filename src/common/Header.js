@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link  } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
 
 const Header = () => (
     <div className="text-center">
         <nav className="navbar navbar-default">
-            <Link to="/" activeClassName="active">Home</Link>
+            <NavLink to="/" activeClassName="active">Home</NavLink>
             {" | "}
-            <Link to="library" activeClassName="active">Library</Link>
+            <NavLink to="library" activeClassName="active">Library</NavLink>
         </nav>
     </div>
 );
