@@ -7,3 +7,7 @@ export const counterIncrement = () => ({
 export const counterDecrement = () => ({
     type: types.COUNTER_DECREMENT
 });
+
+export const counterIncrementAsync = () => ({
+    type: types.COUNTER_INCREMENT
+});

@@ -1,7 +1,10 @@
 import {fork} from 'redux-saga/effects';
-import watchSearchMedia from './watcher';
+import {watchSearchMedia, watchIncrementAsync} from './watcher';
 
 // register sagas and export as a single generator
 export default function* startForeman() {
-    yield fork(watchSearchMedia);
+    yield [
+        fork(watchSearchMedia),
+        fork(watchIncrementAsync)
+    ];
 }
