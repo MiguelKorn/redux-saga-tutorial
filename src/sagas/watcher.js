@@ -8,5 +8,5 @@ export function* watchSearchMedia() {
 }
 
 export function* watchIncrementAsync() {
-    yield takeLatest(types.COUNTER_INCREMENT, incrementAsync);
+    yield takeLatest(types.COUNTER_INCREMENT_ASYNC, incrementAsync);
 }

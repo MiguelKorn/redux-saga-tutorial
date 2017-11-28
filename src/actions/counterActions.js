@@ -9,5 +9,5 @@ export const counterDecrement = () => ({
 });
 
 export const counterIncrementAsync = () => ({
-    type: types.COUNTER_INCREMENT
+    type: types.COUNTER_INCREMENT_ASYNC
 });
