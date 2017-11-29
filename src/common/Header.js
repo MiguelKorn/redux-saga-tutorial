@@ -6,9 +6,9 @@ const Header = () => (
         <nav className="navbar navbar-default">
             <NavLink to="/" activeClassName="active">Home</NavLink>
             {" | "}
-            <NavLink to="library" activeClassName="active">Library</NavLink>
+            <NavLink to="/library" activeClassName="active">Library</NavLink>
             {" | "}
-            <NavLink to="counter" activeClassName="active">Counter</NavLink>
+            <NavLink to="/counter" activeClassName="active">Counter</NavLink>
         </nav>
     </div>
 );
