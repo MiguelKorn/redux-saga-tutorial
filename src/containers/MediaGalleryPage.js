@@ -31,7 +31,7 @@ class MediaGalleryPage extends React.Component {
         const {images, selectedImage, videos, selectedVideo} = this.props;
         return (
             <div className="container-fluid">
-                {images && selectedImage ? (
+                {images && selectedImage && videos && selectedVideo ? (
                     <div>
                         <input type="text" ref={ref => (this.query = ref)}/>
                         <input type="submit" className="btn btn-primary" value="Search"
