@@ -8,7 +8,7 @@ import '../style/styles.css';
 
 class MediaGalleryPage extends React.Component {
     componentDidMount() {
-        this.props.dispatch(searchMediaAction('rain'));
+        this.props.dispatch(searchMediaAction(this.props.match.params.search || 'rain'));
     }
 
     handleSelectImage(selectedImage) {
@@ -22,6 +22,7 @@ class MediaGalleryPage extends React.Component {
     handleSearch(e) {
         e.preventDefault();
         if (this.query !== null) {
+            this.props.history.push(this.query.value);
             this.props.dispatch(searchMediaAction(this.query.value));
             this.query.value = '';
         }
