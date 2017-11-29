@@ -32,7 +32,6 @@ class MediaGalleryPage extends React.Component {
 
     handleSearch(e) {
         e.preventDefault();
-        console.log(this.query.value);
         const {history} = this.props;
         let queryValue = this.query.value;
         if (queryValue !== '') {
@@ -44,7 +43,6 @@ class MediaGalleryPage extends React.Component {
 
     render() {
         const {images, selectedImage, videos, selectedVideo} = this.props;
-        console.log(this.props);
         return (
             <div className="container-fluid">
                 { images && selectedImage && videos && selectedVideo ? (
