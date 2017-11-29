@@ -1,6 +1,6 @@
-import counterReducer from '../reducers/counterReducer';
-import imageReducer from '../reducers/imageReducer';
-import * as types from '../constants/actionTypes';
+import counterReducer from '../counterReducer';
+import imageReducer from '../imageReducer';
+import * as types from '../../constants/actionTypes';
 
 describe('reducers', () => {
     describe('counter', () => {
@@ -9,9 +9,9 @@ describe('reducers', () => {
         });
 
         it('should handle COUNTER_INCREMENT', () => {
-            expect(counterReducer([], {
+            expect(counterReducer(0, {
                 type: types.COUNTER_INCREMENT
-            })).toEqual("1");
+            })).toEqual(1);
 
             expect(counterReducer(1, {
                 type: types.COUNTER_INCREMENT

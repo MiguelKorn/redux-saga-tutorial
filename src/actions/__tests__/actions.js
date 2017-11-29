@@ -1,6 +1,6 @@
-import * as counterActions from '../actions/counterActions';
-import * as mediaActions from '../actions/mediaActions';
-import * as types from '../constants/actionTypes';
+import * as counterActions from '../counterActions';
+import * as mediaActions from '../mediaActions';
+import * as types from '../../constants/actionTypes';
 
 describe('actions', () => {
     describe('media', () => {
