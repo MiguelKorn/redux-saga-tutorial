@@ -2,35 +2,6 @@ import counterReducer from '../reducers/counterReducer';
 import imageReducer from '../reducers/imageReducer';
 import * as types from '../constants/actionTypes';
 
-const imagesList1 = [
-    {
-        id:  1,
-        name: 'image1'
-    },
-    {
-        id:  2,
-        name: 'image2'
-    },
-    {
-        id:  3,
-        name: 'image3'
-    }
-];
-const imagesList2 = [
-    {
-        id:  4,
-        name: 'image4'
-    },
-    {
-        id:  5,
-        name: 'image5'
-    },
-    {
-        id:  6,
-        name: 'image6'
-    }
-];
-
 describe('reducers', () => {
     describe('counter', () => {
         it('should return initial state', () => {
