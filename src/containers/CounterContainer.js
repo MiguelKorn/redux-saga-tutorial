@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {counterIncrement, counterDecrement, counterIncrementAsync} from '../actions/counterActions';
 import Counter from "../components/Counter";
 
-class CounterContainer extends React.Component {
+class CounterContainer extends Component {
     handleOnIncrement() {
         this.props.dispatch(counterIncrement());
     }

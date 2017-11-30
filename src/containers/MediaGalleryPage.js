@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { searchMediaAction, selectImageAction, selectVideoAction } from "../actions/mediaActions";
 import PhotoPage from '../components/PhotoPage';
 import VideoPage from '../components/VideoPage';
 import '../style/styles.css';
 
-class MediaGalleryPage extends React.Component {
+class MediaGalleryPage extends Component {
     componentWillMount() {
         this.refreshSearch(this.props.match.params.search);
     }

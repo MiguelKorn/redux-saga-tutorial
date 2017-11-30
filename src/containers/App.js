@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from '../common/Header';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "../components/HomePage";
 import MediaGalleryPage from "./MediaGalleryPage";
 import CounterContainer from "./CounterContainer";
 
-class App extends React.Component {
+class App extends Component {
     render() {
         return (
             <BrowserRouter>
