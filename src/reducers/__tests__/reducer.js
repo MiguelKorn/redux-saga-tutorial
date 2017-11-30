@@ -1,5 +1,6 @@
 import counterReducer from '../counterReducer';
 import imageReducer from '../imageReducer';
+import videoReducer from "../videoReducer";
 import * as types from '../../constants/actionTypes';
 
 describe('reducers', () => {
@@ -67,6 +68,49 @@ describe('reducers', () => {
                 selectedImage: {
                     id: 2,
                     name: 'image2'
+                }
+            });
+        });
+    });
+
+    describe('video', () => {
+        it('should return inital state', () => {
+            expect(videoReducer(undefined, {})).toEqual([])
+        });
+
+        it('should handle SELECTED_VIDEO', () => {
+            expect(
+                videoReducer([], {
+                    type: types.SELECTED_VIDEO,
+                    video: {
+                        id: 1,
+                        name: 'video'
+                    }
+                })
+            ).toEqual({
+                selectedVideo: {
+                    id: 1,
+                    name: 'video'
+                }
+            });
+
+            expect(
+                videoReducer({
+                    selectedVideo: {
+                        id: 1,
+                        name: 'video'
+                    }
+                }, {
+                    type: types.SELECTED_VIDEO,
+                    video: {
+                        id: 2,
+                        name: 'video2'
+                    }
+                })
+            ).toEqual({
+                selectedVideo: {
+                    id: 2,
+                    name: 'video2'
                 }
             });
         });
