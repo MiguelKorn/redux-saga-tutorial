@@ -26,9 +26,9 @@ describe('sagas', () => {
             const gen = incrementAsync(action);
             const expectedYield = call(delay, 1000);
 
-            const actualYield = gen.next().value;
+            expect(expectedYield).toEqual(gen.next().value);
 
-            expect(expectedYield).toEqual(actualYield);
+            expect(put({type:types.COUNTER_INCREMENT})).toEqual(gen.next().value);
         });
     });
 });
