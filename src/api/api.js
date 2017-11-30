@@ -1,8 +1,10 @@
 const FLICKR_API_KEY = 'a46a979f39c49975dbdd23b378e6d3d5';
-const SHUTTER_CLIENT_ID = '3434a56d8702085b9226';
-const SHUTTER_CLIENT_SECRET = '7698001661a2b347c2017dfd50aebb2519eda578';
+// const SHUTTER_CLIENT_ID = '3434a56d8702085b9226';
+// const SHUTTER_CLIENT_SECRET = '7698001661a2b347c2017dfd50aebb2519eda578';
+const BTOA_SHUTTER_CREDENTIALS = 'MzQzNGE1NmQ4NzAyMDg1YjkyMjY6NzY5ODAwMTY2MWEyYjM0N2MyMDE3ZGZkNTBhZWJiMjUxOWVkYTU3OA==';
 
-const basisAuth = () => 'Basic '.concat(window.btoa(`${SHUTTER_CLIENT_ID}:${SHUTTER_CLIENT_SECRET}`));
+// const basisAuth = () => 'Basic '.concat(window.btoa(`${SHUTTER_CLIENT_ID}:${SHUTTER_CLIENT_SECRET}`));
+const basisAuth = () => 'Basic '.concat(BTOA_SHUTTER_CREDENTIALS);
 const authParameters = {
     headers: {
         Authorization: basisAuth()
