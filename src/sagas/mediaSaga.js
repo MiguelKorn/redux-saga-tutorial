@@ -13,7 +13,7 @@ export function* searchMediaSaga({payload}) {
         yield put({type: types.FLICKR_IMAGES_SUCCESS, images});
         yield put({type: types.SELECTED_IMAGE, image: images[0]});
         // ])
-    } catch (err) {
-        yield put({type: types.SEARCH_MEDIA_ERROR, err})
+    } catch (error) {
+        yield put({type: types.SEARCH_MEDIA_ERROR, error})
     }
 }

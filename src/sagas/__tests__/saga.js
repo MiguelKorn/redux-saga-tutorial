@@ -1,17 +1,16 @@
 import { incrementAsync } from '../counterSaga';
+import { searchMediaSaga } from "../mediaSaga";
 import * as types from '../../constants/actionTypes';
 import { delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import { expectSaga } from 'redux-saga-test-plan';
-import { searchMediaSaga } from "../mediaSaga";
 import { flickrImages, shutterStockVideos } from "../../api/api";
 
 global.fetch = require('jest-fetch-mock');
 
 describe('sagas', () => {
     describe('media', () => {
+        const action = {type: types.SEARCH_MEDIA_REQUEST, payload: "world"};
         it('should call data from the api', () => {
-            const action = {type: types.SEARCH_MEDIA_REQUEST, payload: "world"};
             const images = [{
                 id: "38111730024",
                 title: "How Many Gallons in Lake Michigan and Other Facts",
@@ -32,10 +31,18 @@ describe('sagas', () => {
 
             expect(put({type:types.SHUTTER_VIDEOS_SUCCESS, videos})).toEqual(gen.next(images).value);
             expect(put({type:types.SELECTED_VIDEO, video: videos[0]})).toEqual(gen.next().value);
-            expect(put({type:types.FLICKR_IMAGES_SUCCESS, images: images2})).toEqual(gen.next().value);
+            expect(put({type:types.FLICKR_IMAGES_SUCCESS, images: images})).toEqual(gen.next().value);
             expect(put({type:types.SELECTED_IMAGE, image: images[0]})).toEqual(gen.next().value);
 
         });
+
+        it('should return error', ()=>{
+            const saga = searchMediaSaga(action);
+            const error = {};
+
+            saga.next();
+            expect(put({type: types.SEARCH_MEDIA_ERROR, error})).toEqual(saga.throw(error).value);
+        })
     });
 
     describe('counter', () => {
