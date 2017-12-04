@@ -71,48 +71,78 @@ describe('reducers', () => {
                 }
             });
         });
+
+        it('should handle FLICKR_IMAGES_SUCCESS', () => {
+            expect(
+                imageReducer([], {
+                    type: types.FLICKR_IMAGES_SUCCESS,
+                    images: [
+                        {id: 1, name: 'image1'},
+                        {id: 2, name: 'image2'}
+                    ]
+                })).toEqual([[
+                    {id: 1, name: 'image1'},
+                    {id: 2, name: 'image2'}
+                ]]
+            );
+        });
+    });
+});
+
+describe('video', () => {
+    it('should return inital state', () => {
+        expect(videoReducer(undefined, {})).toEqual([])
     });
 
-    describe('video', () => {
-        it('should return inital state', () => {
-            expect(videoReducer(undefined, {})).toEqual([])
+    it('should handle SELECTED_VIDEO', () => {
+        expect(
+            videoReducer([], {
+                type: types.SELECTED_VIDEO,
+                video: {
+                    id: 1,
+                    name: 'video'
+                }
+            })
+        ).toEqual({
+            selectedVideo: {
+                id: 1,
+                name: 'video'
+            }
         });
 
-        it('should handle SELECTED_VIDEO', () => {
-            expect(
-                videoReducer([], {
-                    type: types.SELECTED_VIDEO,
-                    video: {
-                        id: 1,
-                        name: 'video'
-                    }
-                })
-            ).toEqual({
+        expect(
+            videoReducer({
                 selectedVideo: {
                     id: 1,
                     name: 'video'
                 }
-            });
-
-            expect(
-                videoReducer({
-                    selectedVideo: {
-                        id: 1,
-                        name: 'video'
-                    }
-                }, {
-                    type: types.SELECTED_VIDEO,
-                    video: {
-                        id: 2,
-                        name: 'video2'
-                    }
-                })
-            ).toEqual({
-                selectedVideo: {
+            }, {
+                type: types.SELECTED_VIDEO,
+                video: {
                     id: 2,
                     name: 'video2'
                 }
-            });
+            })
+        ).toEqual({
+            selectedVideo: {
+                id: 2,
+                name: 'video2'
+            }
         });
+    });
+
+    it('should handle SHUTTER_VIDEOS_SUCCESS', () => {
+        expect(
+            videoReducer([], {
+                type: types.SHUTTER_VIDEOS_SUCCESS,
+                videos: [
+                    {id: 1, name: 'video1'},
+                    {id: 2, name: 'video2'}
+                ]
+            })).toEqual([[
+                {id: 1, name: 'video1'},
+                {id: 2, name: 'video2'}
+            ]]
+        );
     });
 });
