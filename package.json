@@ -2,6 +2,11 @@
   "name": "redux-saga-tutorial",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/{actions,reducers,sagas}/*.{js,jsx}"
+    ]
+  },
   "devDependencies": {
     "jest-fetch-mock": "^1.3.3",
     "react-scripts": "1.0.17",
