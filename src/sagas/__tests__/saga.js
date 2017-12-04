@@ -6,26 +6,35 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { searchMediaSaga } from "../mediaSaga";
 import { flickrImages, shutterStockVideos } from "../../api/api";
 
+global.fetch = require('jest-fetch-mock');
+
 describe('sagas', () => {
     describe('media', () => {
         it('should call data from the api', () => {
-            const action = {payload: "rain"};
+            const action = {type: types.SEARCH_MEDIA_REQUEST, payload: "world"};
             const images = [{
                 id: "38111730024",
                 title: "How Many Gallons in Lake Michigan and Other Facts",
                 mediaUrl: "https://farm5.staticflickr.com/4563/38111730024_ec2c6dbe10.jpg"
             }];
+            const images2 = [];
             const videos = [{}];
 
+            // return expectSaga(searchMediaSaga, action)
+            //     .put({type: types.SELECTED_IMAGE, image: images[0]})
+            //     .dispatch({type: types.SEARCH_MEDIA_REQUEST, payload: 'rain'})
+            //     .run()
 
-            return expectSaga(searchMediaSaga, action)
-                .provide([
-                    [call(shutterStockVideos, action.payload), videos],
-                    [call(flickrImages, action.payload), images],
-                ])
-                .put({type: types.FLICKR_IMAGES_SUCCESS, images})
-                .dispatch({type: types.SEARCH_MEDIA_REQUEST, payload: 'rain'})
-                .run()
+            const gen = searchMediaSaga(action);
+
+            expect(call(shutterStockVideos, action.payload)).toEqual(gen.next().value);
+            expect(call(flickrImages, action.payload)).toEqual(gen.next(videos).value);
+
+            expect(put({type:types.SHUTTER_VIDEOS_SUCCESS, videos})).toEqual(gen.next(images).value);
+            expect(put({type:types.SELECTED_VIDEO, video: videos[0]})).toEqual(gen.next().value);
+            expect(put({type:types.FLICKR_IMAGES_SUCCESS, images: images2})).toEqual(gen.next().value);
+            expect(put({type:types.SELECTED_IMAGE, image: images[0]})).toEqual(gen.next().value);
+
         });
     });
 

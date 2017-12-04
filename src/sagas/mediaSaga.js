@@ -7,12 +7,12 @@ export function* searchMediaSaga({payload}) {
         const videos = yield call(shutterStockVideos, payload);
         const images = yield call(flickrImages, payload);
 
-        yield all([
-            put({type: types.SHUTTER_VIDEOS_SUCCESS, videos}),
-            put({type: types.SELECTED_VIDEO, video: videos[0]}),
-            put({type: types.FLICKR_IMAGES_SUCCESS, images}),
-            put({type: types.SELECTED_IMAGE, image: images[0]}),
-        ])
+        // yield all([
+        yield put({type: types.SHUTTER_VIDEOS_SUCCESS, videos});
+        yield put({type: types.SELECTED_VIDEO, video: videos[0]});
+        yield put({type: types.FLICKR_IMAGES_SUCCESS, images});
+        yield put({type: types.SELECTED_IMAGE, image: images[0]});
+        // ])
     } catch (err) {
         yield put({type: types.SEARCH_MEDIA_ERROR, err})
     }
