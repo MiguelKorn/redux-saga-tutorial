@@ -40,5 +40,9 @@ describe('actions', () => {
         it('should create an action to decrement the counter', () => {
             expect(counterActions.counterDecrement()).toEqual({type: types.COUNTER_DECREMENT});
         });
+
+        it('should create an action to async increment the counter', ()=>{
+            expect(counterActions.counterIncrementAsync()).toEqual({type: types.COUNTER_INCREMENT_ASYNC})
+        });
     });
 });
