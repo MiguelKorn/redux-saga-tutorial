@@ -1,4 +1,4 @@
-import { fork, all, takeLatest } from 'redux-saga/effects';
+import { fork, takeLatest } from 'redux-saga/effects';
 import { searchMediaSaga } from "./mediaSaga";
 import { incrementAsync } from "./counterSaga";
 import * as types from "../constants/actionTypes";

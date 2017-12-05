@@ -1,4 +1,4 @@
-import { all, put, call } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import { flickrImages, shutterStockVideos } from "../api/api";
 import * as types from '../constants/actionTypes';
 
