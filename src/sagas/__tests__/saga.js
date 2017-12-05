@@ -1,13 +1,23 @@
 import { incrementAsync } from '../counterSaga';
 import { searchMediaSaga } from "../mediaSaga";
+import rootSaga from '../index';
 import * as types from '../../constants/actionTypes';
 import { delay } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { flickrImages, shutterStockVideos } from "../../api/api";
 
 global.fetch = require('jest-fetch-mock');
 
 describe('sagas', () => {
+    describe('root', () => {
+        it('should register sagas', () => {
+            const saga = rootSaga();
+
+            expect(fork(takeLatest, types.SEARCH_MEDIA_REQUEST, searchMediaSaga)).toEqual(saga.next().value);
+            expect(fork(takeLatest, types.COUNTER_INCREMENT_ASYNC, incrementAsync)).toEqual(saga.next().value);
+        });
+    });
+
     describe('media', () => {
         const action = {type: types.SEARCH_MEDIA_REQUEST, payload: "world"};
         it('should call data from the api', () => {
@@ -29,14 +39,14 @@ describe('sagas', () => {
             expect(call(shutterStockVideos, action.payload)).toEqual(gen.next().value);
             expect(call(flickrImages, action.payload)).toEqual(gen.next(videos).value);
 
-            expect(put({type:types.SHUTTER_VIDEOS_SUCCESS, videos})).toEqual(gen.next(images).value);
-            expect(put({type:types.SELECTED_VIDEO, video: videos[0]})).toEqual(gen.next().value);
-            expect(put({type:types.FLICKR_IMAGES_SUCCESS, images: images})).toEqual(gen.next().value);
-            expect(put({type:types.SELECTED_IMAGE, image: images[0]})).toEqual(gen.next().value);
+            expect(put({type: types.SHUTTER_VIDEOS_SUCCESS, videos})).toEqual(gen.next(images).value);
+            expect(put({type: types.SELECTED_VIDEO, video: videos[0]})).toEqual(gen.next().value);
+            expect(put({type: types.FLICKR_IMAGES_SUCCESS, images: images})).toEqual(gen.next().value);
+            expect(put({type: types.SELECTED_IMAGE, image: images[0]})).toEqual(gen.next().value);
 
         });
 
-        it('should return error', ()=>{
+        it('should return error', () => {
             const saga = searchMediaSaga(action);
             const error = {};
 
